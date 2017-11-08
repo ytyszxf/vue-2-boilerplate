@@ -14,13 +14,14 @@ import Vue from 'vue';
  * Import and bootstrap the plugins.
  */
 
+
+import './plugins/zepto';
+import './plugins/sui';
+
 import './plugins/vuex';
 import './plugins/axios';
-import { i18n } from './plugins/vue-i18n';
 import { router } from './plugins/vue-router';
 import './plugins/vuex-router-sync';
-import './plugins/bootstrap';
-import './plugins/font-awesome';
 
 /* ============
  * Styling
@@ -64,7 +65,7 @@ new Vue({
   /**
    * The localization plugin.
    */
-  i18n,
+  // i18n,
 
   /**
    * The router.

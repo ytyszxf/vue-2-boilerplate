@@ -5,16 +5,23 @@
  * The routes and redirects are defined in this file.
  */
 
+import Home from '@/pages/Home/Index';
+import Account from '@/pages/Account/Index';
+
 export default [
   // Home
   {
     path: '/home',
     name: 'home.index',
-    component: () => import('@/pages/Home/Index'),
+    component: Home,
 
     // If the user needs to be authenticated to view this page
     meta: {
       auth: true,
+      ensure: async () => {
+        await import('sm/js/city-data');
+        await import('sm/js/city-picker');
+      },
     },
   },
 
@@ -22,7 +29,7 @@ export default [
   {
     path: '/account',
     name: 'account.index',
-    component: () => import('@/pages/Account/Index'),
+    component: Account,
 
     // If the user needs to be authenticated to view this page.
     meta: {

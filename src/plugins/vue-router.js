@@ -17,8 +17,9 @@ Vue.use(VueRouter);
 
 export const router = new VueRouter({
   routes,
+  mode: 'history',
 });
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   if (to.matched.some(m => m.meta.auth) && !store.state.auth.authenticated) {
     /*
      * If the user is not authenticated and visits
@@ -35,6 +36,9 @@ router.beforeEach((to, from, next) => {
     next({
       name: 'home.index',
     });
+  } else if (to.matched.some(m => m.meta.ensure && m.meta.ensure instanceof Function)) {
+    await to.meta.ensure();
+    next();
   } else {
     next();
   }

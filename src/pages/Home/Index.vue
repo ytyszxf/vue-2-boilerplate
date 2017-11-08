@@ -62,6 +62,7 @@
             GitHub
           </span>
         </a>
+        <select id="city-selector"></select>
       </div>
       <div slot="footer">
         Made with love by Vivid Web
@@ -80,6 +81,7 @@
 
   import VLayout from '@/layouts/Default';
   import VCard from '@/components/Card';
+  import $ from '@/plugins/zepto';
 
   export default {
     /**
@@ -93,6 +95,9 @@
     components: {
       VLayout,
       VCard,
+    },
+    mounted() {
+      $('#city-selector').cityPicker();
     },
   };
 </script>
