@@ -1,7 +1,13 @@
 <template>
-  <div class="container">
-    <!-- Content will be placed here -->
-    <slot></slot>
+  <div class="page-group">
+    <!-- 单个page ,第一个.page默认被展示-->
+    <div class="page page-current">
+
+      <!-- 这里是页面内容区 -->
+      <div class="content">
+        <slot></slot>
+      </div>
+    </div>
   </div>
 </template>
 

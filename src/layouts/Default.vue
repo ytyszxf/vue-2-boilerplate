@@ -1,64 +1,33 @@
 <template>
-  <div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <router-link
-        class="navbar-brand"
-        :to="{ name: 'home.index' }"
-      >
-        Vue 2 Boilerplate
-      </router-link>
+  <div class="page-group">
+    <div class="page page-current">
+        <!-- 标题栏 -->
+        <header class="bar bar-nav">
+            <a class="icon icon-me pull-left open-panel"></a>
+            <h1 class="title">标题</h1>
+        </header>
 
-      <button
-        class="navbar-toggler"
-        type="button"
-        @click="toggleMenu"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div
-        class="collapse navbar-collapse"
-        :class="{ show : menuCollapsed}"
-      >
-        <ul class="navbar-nav mr-auto">
-          <router-link
-            :to="{ name: 'home.index' }"
-            active-class="active"
-            class="nav-item"
-            tag="li"
-          >
-            <a class="nav-link">
-              Home
+        <!-- 工具栏 -->
+        <nav class="bar bar-tab">
+            <a class="tab-item external active" href="#">
+                <span class="icon icon-home"></span>
+                <span class="tab-label">首页</span>
             </a>
-          </router-link>
-          <router-link
-            :to="{ name: 'account.index' }"
-            active-class="active"
-            class="nav-item"
-            tag="li"
-          >
-            <a class="nav-link">
-              Account
+            <a class="tab-item external" href="#">
+                <span class="icon icon-star"></span>
+                <span class="tab-label">收藏</span>
             </a>
-          </router-link>
-        </ul>
-        <span class="navbar-text">
-          <a
-            class="btn btn-light"
-            href="#"
-            @click.prevent="logout"
-          >
-            <i class="fa fa-sign-out"></i>
-          </a>
-        </span>
-      </div>
-    </nav>
+            <a class="tab-item external" href="#">
+                <span class="icon icon-settings"></span>
+                <span class="tab-label">设置</span>
+            </a>
+        </nav>
 
-    <div class="container pt-4">
-      <!-- Content will be placed here -->
-      <slot></slot>
+        <!-- 这里是页面内容区 -->
+        <div class="content">
+            <slot></slot>
+        </div>
     </div>
-
   </div>
 </template>
 

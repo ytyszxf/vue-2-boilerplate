@@ -1,88 +1,101 @@
+<style lang="scss" scoped="" type="text/css">
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  #register {
+    width: 100%;
+    display: block;
+  }
+  #content-holder {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 20rem;
+  }
+  .item-content {
+    padding-left: 0;
+  }
+  .wechat {
+    width: 5rem;
+    height: 5rem;
+  }
+  .list-block {
+    .item-inner {
+      &::after {
+        bottom: 1px;
+      }
+    }
+  } 
+  #login {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+</style>
+
 <template>
   <v-layout>
-    <v-card contextual-style="dark">
-      <span slot="header">
-        Register
-      </span>
-      <div slot="body">
-        <form @submit.prevent="register(user)">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user fa-fw"></i>
+    <div class="content">
+      <router-link id="login" :to="{name: 'login.index'}">登录</router-link>
+      <div class="content-block" id="content-holder">
+        <form @submit.prevent="login(user)">
+          <ul class="list-block">
+            <li>
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="text" placeholder="输入手机号码" v-model="user.phone">
+                  </div>
+                </div>
               </div>
-              <input
-                v-model="user.firstName"
-                type="text"
-                placeholder="First name"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-user fa-fw"></i>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="password" placeholder="输入验证码" v-model="user.password">
+                  </div>
+                  <div class="item-after"><button class="button">发送</button></div>
+                </div>
               </div>
-              <input
-                v-model="user.lastName"
-                type="text"
-                placeholder="Last name"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-envelope fa-fw"></i>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="password" placeholder="输入密码" v-model="user.password">
+                  </div>
+                </div>
               </div>
-              <input
-                v-model="user.email"
-                type="email"
-                placeholder="Email"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-lock fa-fw"></i>
+            </li>
+            <li>
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="password" placeholder="请重新输入密码" v-model="user.password">
+                  </div>
+                </div>
               </div>
-              <input
-                v-model="user.password"
-                type="password"
-                placeholder="Password"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-lock fa-fw"></i>
-              </div>
-              <input
-                v-model="user.passwordConfirm"
-                type="password"
-                placeholder="Confirm password"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-outline-primary">
-              Register
+            </li>
+          </ul>
+          <p>
+            <button class="button" id="register">
+              注册
             </button>
-          </div>
+          </p>
+          <p>新用户将自动注册，并视为同意<a>《用户注册协议》</a></p>
         </form>
       </div>
-      <div slot="footer">
-        Already got an account?
-        <router-link :to="{ name: 'login.index' }">Login</router-link>
-      </div>
-    </v-card>
+    </div>
   </v-layout>
 </template>
 

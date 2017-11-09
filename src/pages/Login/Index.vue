@@ -1,49 +1,98 @@
+<style lang="scss" scoped="" type="text/css">
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  #login {
+    width: 100%;
+    display: block;
+  }
+  #content-holder {
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-top: auto;
+    margin-bottom: auto;
+    height: 20rem;
+  }
+  .item-content {
+    padding-left: 0;
+  }
+  .wechat {
+    width: 5rem;
+    height: 5rem;
+  }
+  .list-block {
+    .item-inner {
+      &::after {
+        bottom: 1px;
+      }
+    }
+  } 
+  #register {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+</style>
+
 <template>
   <v-layout>
-    <v-card contextual-style="dark">
-      <span slot="header">
-        Login
-      </span>
-      <div slot="body">
+    <div class="content">
+      <router-link id="register" :to="{name: 'register.index'}">注册</router-link>
+      <div class="content-block" id="content-holder">
         <form @submit.prevent="login(user)">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-envelope fa-fw"></i>
+          <ul class="list-block">
+            <li>
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-name"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="number" placeholder="手机号码" v-model="user.phone">
+                  </div>
+                </div>
+                <v-input-clear :value="user.phone" @click="user.phone = ''"></v-input-clear>
               </div>
-              <input
-                v-model="user.email"
-                type="email"
-                placeholder="Email"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">
-                <i class="fa fa-lock fa-fw"></i>
+            </li>
+            <li v-if="!loginByPassword">
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="password" placeholder="验证码" v-model="user.password">
+                  </div>
+                  <div class="item-after"><button class="button">发送</button></div>
+                </div>
               </div>
-              <input
-                v-model="user.password"
-                type="password"
-                placeholder="Password"
-                class="form-control"
-              >
-            </div>
-          </div>
-          <div class="form-group">
-            <button class="btn btn-outline-primary">
-              Login
+            </li>
+            <li v-else>
+              <div class="item-content">
+                <div class="item-media"><i class="icon icon-form-password"></i></div>
+                <div class="item-inner">
+                  <div class="item-input">
+                    <input type="password" placeholder="密码" v-model="user.password">
+                  </div>
+                  <v-input-clear :value="user.password" @click="user.password = ''"></v-input-clear>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <p>
+            <button class="button" id="login">
+              登录
             </button>
-          </div>
+          </p>
         </form>
+        <div class="text-center">
+          <p v-if="!loginByPassword"><a @click="loginByPassword=!loginByPassword">使用密码登录</a></p>
+          <p v-else><a @click="loginByPassword=!loginByPassword">使用验证码登录</a></p>
+          <p><router-link :to="{ name: 'login.index' }">忘记密码？</router-link></p>
+          <p><a><img class="wechat" :src="require('@/assets/sprite/wechart.svg')"/></a></p>
+        </div>
       </div>
-      <div slot="footer">
-        No account?
-        <router-link :to="{ name: 'register.index' }">Register</router-link>
-      </div>
-    </v-card>
+    </div>
   </v-layout>
 </template>
 
@@ -57,6 +106,7 @@
 
   import VLayout from '@/layouts/Minimal';
   import VCard from '@/components/Card';
+  import VInputClear from '@/components/InputClear';
 
   export default {
     /**
@@ -72,9 +122,10 @@
     data() {
       return {
         user: {
-          email: null,
+          phone: null,
           password: null,
         },
+        loginByPassword: true,
       };
     },
 
@@ -98,6 +149,7 @@
     components: {
       VLayout,
       VCard,
+      VInputClear,
     },
   };
 </script>
