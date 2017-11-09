@@ -38,6 +38,7 @@
     "axios": "^0.16.2",
     "sm": "github:sdc-alibaba/SUI-Mobile",
     "vue": "^2.4.2",
+    "vue-form": "^4.5.2",
     "vue-router": "^2.7.0",
     "vuex": "^2.4.0",
     "vuex-router-sync": "^4.2.0",
