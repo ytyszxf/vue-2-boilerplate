@@ -4,6 +4,4 @@ import 'sm/js/device';
 import 'sm/js/modal';
 import 'sm/js/picker';
 
-import 'sm/js/accordion';
-import 'sm/js/calendar';
 import 'sm/js/init';

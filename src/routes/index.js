@@ -19,8 +19,7 @@ export default [
     meta: {
       auth: true,
       ensure: async () => {
-        await import('sm/js/city-data');
-        await import('sm/js/city-picker');
+        await import('@/plugins/sui/components/city-picker');
       },
     },
   },

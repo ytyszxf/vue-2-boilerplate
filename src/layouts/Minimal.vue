@@ -1,11 +1,7 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col col-6">
-        <!-- Content will be placed here -->
-        <slot></slot>
-      </div>
-    </div>
+    <!-- Content will be placed here -->
+    <slot></slot>
   </div>
 </template>
 
